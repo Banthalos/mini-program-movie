@@ -35,7 +35,7 @@ Page({
        this.setData({
         user: user,
         recommend,
-        recommendImage : recommend.movie_image
+        recommendImage : recommend.image
        })
       }
     })
@@ -70,7 +70,7 @@ Page({
     console.log(event)
     const id = event.currentTarget.id
     wx.navigateTo({
-      url: '/pages/recommend/recommend?id='+id,
+      url: `/pages/recommend/recommend?id=${id}&isShow={{true}}`,
     })
   },
   //热门 点击事件

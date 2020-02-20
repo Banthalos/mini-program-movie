@@ -26,6 +26,13 @@ Page({
       console.log(error)
       wx.stopPullDownRefresh()
     })
+  },
+  onItemClick: function(event){
+    console.log(event)
+    const id = event.target.id
+    wx.navigateTo({
+      url: `/pages/detail/detail?id=${id}`,
+    })
   }
 
 })

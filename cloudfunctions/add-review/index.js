@@ -13,9 +13,9 @@ exports.main = async (event, context) => {
   const addReviewRes = await db.collection("review").add({
     data:{
       openId,
-      movie_id: event.id,
-      movie_image: event.image,
-      movie_name: event.name,
+      id: event.id,
+      image: event.image,
+      name: event.name,
       user: event.user,
       review: event.review,
       soudUrl: event.soudUrl,

@@ -64,8 +64,8 @@ const db = () => ({
   fetchReviewOfId: (id) => new Promise((resolve, reject) => {
     wx.cloud.callFunction({
       name: 'fetchReviewOfId',
-      data: {
-        _id: id
+      data: { 
+        id: id
       }
     }).then(res => {
       console.log(res)
@@ -74,7 +74,9 @@ const db = () => ({
     })
   }),
 
-  //发布影评：（电影Id, 电影图片，电影名，用户信息， 影评，音频）
+  /**
+   * 发布影评：（电影Id, 电影图片，电影名，用户信息， 影评，音频）
+   */
   releaseReview: (id, image, name, user, review, soudUrl, recordingTime) => new Promise((resolve, reject) => {
     wx.cloud.callFunction({
       name: 'add-review',
@@ -102,11 +104,13 @@ const db = () => ({
   }),
 
   //收藏影评 （电影id, 电影名字，电影图片，影评人信息，影评内容）
-  collection: (reviewRes) => new Promise((reslove, reject) => {
+  //addOrCollection: 用于判定用户是自己发布Or收藏
+  collection: (reviewRes, addOrCollection) => new Promise((reslove, reject) => {
     wx.cloud.callFunction({
       name: 'collection',
       data:{
-        res : reviewRes
+        res : reviewRes,
+        addOrCollection: addOrCollection
       }
     }).then(res => {
       console.log(res)

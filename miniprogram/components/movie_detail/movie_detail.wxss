@@ -51,17 +51,15 @@
  .movie_button{
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   margin-top: 100rpx;
   background: white;
 }
 
 .movie_button re-button{
   align-items: center;
-  justify-content: center
+  justify-content: center;
 }
-
-
 
 .review{
   display: flex;

@@ -7,9 +7,11 @@ const db = cloud.database()
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const _id = event._id
+  const wxContext = cloud.getWXContext()
+  const id = event.id
+  const openId = wxContext.OPENID
 
-  const reviewRes = await db.collection("review").where({_id}).get()
+  const reviewRes = await db.collection("review").where({openId, id}).get()
 
   const review = reviewRes.data
 

@@ -2,7 +2,7 @@
 <!-- 影视列表-->
 
 <block wx:if="{{review.length}}">
-  <view class="review" wx:for="{{review}}" wx:key="_id" bindtap="toRecommend" id="{{item._id}}">
+  <view class="review" wx:for="{{review}}" wx:key="_id" bindtap="toRecommend" id="{{item.id}}">
     <view class="author">
       <image src="{{item.user.avatarUrl}}"></image>
       <view>{{item.user.nickName}}</view>

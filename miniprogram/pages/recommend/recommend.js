@@ -21,6 +21,8 @@ Page({
    */
   onLoad: function (options) {
     const id = options.id
+    const isShow = options.isShow
+    this.setData({isShow})
     console.log(options)
     this.fetchReviewOfId(id)
   },
@@ -32,9 +34,9 @@ Page({
       console.log(reviewRes)
       this.setData({
         reviewRes,
-        movie_image: reviewRes.movie_image,
-        movie_id: reviewRes.movie_id,
-        movie_name: reviewRes.movie_name,
+        movie_image: reviewRes.image,
+        movie_id: reviewRes.id, 
+        movie_name: reviewRes.name,
         user: reviewRes.user,
         input: reviewRes.review,
         soudUrl: reviewRes.soudUrl,
@@ -67,7 +69,8 @@ Page({
   //收藏影评 （电影id, 电影名字，电影图片，影评人信息，影评内容）
   collectionHandle(){
     console.log(this.data.reviewRes)
-    cloud.db().collection(this.data.reviewRes).then(({result}) => {
+    const collection = "collection"
+    cloud.db().collection(this.data.reviewRes, collection).then(({result}) => {
       
       wx.showToast({
         title: '收藏成功',

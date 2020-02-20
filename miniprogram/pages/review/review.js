@@ -127,7 +127,7 @@ Page({
     }
 
     wx.navigateTo({
-      url: `/pages/preview/preview?id=${id}&input=${input}&soudUrl=${soudUrl}&recordingTime=${recordingTime}`,
+      url: `/pages/preview/preview?id=${id}&input=${input}&soudUrl=${soudUrl}&recordingTime=${recordingTime}&isShow={{true}}`,
 
     })
   }

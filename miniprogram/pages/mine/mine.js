@@ -8,8 +8,9 @@ Page({
    * Page initial data
    */
   data: {
+    tabs: ['发布的影评','收藏的影评'],
+    curIndex: 0,
     user: util.user().getCurrentUser() || null
-
   },
 
 
@@ -18,7 +19,7 @@ Page({
 
   onShow(){
     this.setData({
-      user: util.user().getCurrentUser() || null
+      user: util.user().getCurrentUser() || null,
     })
     wx.startPullDownRefresh()
   },
@@ -54,9 +55,31 @@ Page({
         wx.stopPullDownRefresh()
         const {data} = result
         console.log(data)
-        this.setData({
-          collection:data
+
+        let release = []
+        let collection = []
+        /**
+         * 区分发布影评与收藏影评
+         */
+        data.map(it => {
+          if(it.addOrCollection == 'add'){
+            release.push(it)
+          }else{
+            collection.push(it)
+          }
         })
+
+        this.setData({
+          total: data,
+          release,
+          collection
+        })
+
+        if (this.data.curIndex == 0) {
+          this.setData({ review: this.data.release})
+        } else {
+          this.setData({ review: this.data.collection })
+        }
 
       }).catch(error => {
         wx.stopPullDownRefresh()
@@ -80,6 +103,34 @@ Page({
     console.log(tempSound)
     wx.playBackgroundAudio({
       dataUrl: tempSound,
+    })
+  },
+
+  //选项卡切换事件
+  clickTab:function(event){
+    console.log(event)
+    const current = event.currentTarget.dataset.current
+    if(current == 0){
+      this.setData({review: this.data.release, curIndex : current})
+    }else{
+      this.setData({ review: this.data.collection, curIndex: current})
+    }
+  },
+
+  swiperTab: function (e) {
+    const current = e.detail.current
+    if (current == 0) {
+      this.setData({ review: this.data.release, curIndex: current })
+    } else {
+      this.setData({ review: this.data.collection, curIndex: current })
+    }
+  },
+
+  onItemClick: function(event){
+    console.log(event)
+    const id = event.currentTarget.id
+    wx.navigateTo({
+      url: `/pages/recommend/recommend?id=${id}`,
     })
   }
   

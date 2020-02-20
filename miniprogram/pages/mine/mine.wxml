@@ -6,17 +6,17 @@
     <login bindOnLogin="onGotUserInfo"></login>
   </block>
 
-  <block wx:elif="{{collection}}">
-    <view>
-      <view class="collection_default">收藏的影评</view>
-
-      <block wx:for="{{collection}}" wx:key="_id">
-        <movie_item isReview="{{false}}" movie="{{item}}" isReview="{{false}}" defaultImage="/images/default.png"
-         recordingTime="{{item.recordingTime}}" bindAudioPlay="audioPlay"> </movie_item>
-      </block>
-    
+  <block wx:elif="{{total}}">
+    <view class="swiper-tab">
+      <view wx:for="{{tabs}}" wx:key="index" class="swiper-tab-item {{curIndex == index ? 'swiper-active' : ''}}"  data-current="{{index}}" catchtap="clickTab">
+        <text>{{item}}</text>
+      </view>
     </view>
 
+    <block  wx:for="{{review}}" wx:key="_id">
+      <movie_item isReview="{{false}}" movie="{{item}}" id="{{item.id}}" isReview="{{false}}" defaultImage="/images/default.png"
+               recordingTime="{{item.recordingTime}}" bindAudioPlay="audioPlay" bindOnItemClick="onItemClick"> </movie_item>
+    </block>
   </block>
 
   <block wx:else>

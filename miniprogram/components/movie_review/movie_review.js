@@ -37,6 +37,10 @@ Component({
     recordingTime:{
       type: String,
       value: null
+    },
+    isShow:{
+      type:Boolean,
+      value:false
     }
   },
 

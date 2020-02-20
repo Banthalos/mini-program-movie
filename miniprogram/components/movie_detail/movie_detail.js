@@ -51,6 +51,10 @@ Component({
       const id = event.detail
       this.triggerEvent("SecondHandle", id)
     },
+    thirdHandle: function (event) {
+      const id = event.detail
+      this.triggerEvent("ThirdHandle", id)
+    },
     recordStart:function(event){
       const id = event.target.id
       console.log(id)

@@ -24,7 +24,7 @@
   margin-bottom: 50rpx;
   padding: 0 50rpx;
   width: 550rpx;
-  height: 600rpx;
+  height: 500rpx;
 }
 
 .movie_desc .movie_title{

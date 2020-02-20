@@ -1,6 +1,5 @@
 <!--components/movie_item/movie_item.wxml-->
-<navigator url="{{nav_to}}">
-  <view class="movie_item">
+  <view class="movie_item" id="{{id}}" bindtap="onItemClick">
     <image class="movie_image" src="{{movie.image == '' ? '/images/default.png' : movie.image}}"></image>
     <view class="movie_content">
       <view class="movie_title">{{movie.name}}</view>
@@ -26,4 +25,3 @@
       </block>
     </view>
   </view>
-</navigator>

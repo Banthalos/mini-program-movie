@@ -60,7 +60,7 @@ Page({
     console.log(event)
     const id = event.currentTarget.id
     wx.navigateTo({
-      url: `/pages/recommend/recommend?id=${id}`,
+      url: `/pages/recommend/recommend?id=${id}`, 
     })
   }
   

@@ -13,12 +13,12 @@ Component({
       type: Object,
       value:　{}
     },
-    nav_to:{
+    recordingTime:{
       type: String,
       value:''
     },
-    recordingTime:{
-      type: String,
+    id:{
+      type:String,
       value:''
     }
 
@@ -46,5 +46,13 @@ Component({
         recommendImage: '/images/default.png'
       })
     },
-  }
+
+    onItemClick: function (event) {
+      console.log(event)
+      const id = event.currentTarget.id
+      this.triggerEvent("OnItemClick", id)
+    }
+  },
+
+  
 })

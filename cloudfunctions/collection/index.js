@@ -10,17 +10,19 @@ exports.main = async (event, context) => {
   const openid = wxContext.OPENID
   
   const params = event.res
+  const addOrCollection = event.addOrCollection
 
   const collectionRes = await db.collection('collection').add({
     data:{
       openid,
-      id: params.movie_id,
-      image: params.movie_image,
-      name: params.movie_name,
+      id: params.id,
+      image: params.image,
+      name: params.name,
       review: params.review,
       soudUrl: params.soudUrl,
       user: params.user,
-      recordingTime: params.recordingTime
+      recordingTime: params.recordingTime,
+      addOrCollection
     }
   })
 

@@ -9,9 +9,9 @@ const db = cloud.database()
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   const openId = wxContext.OPENID
-  const movie_id = event.id
+  const id = event.id
 
-  const reviewRes = await db.collection('review').where({openId, movie_id}).get()
+  const reviewRes = await db.collection('review').where({openId, id}).get()
 
   const data = reviewRes.data
 

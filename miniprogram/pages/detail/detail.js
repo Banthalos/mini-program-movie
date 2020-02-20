@@ -2,8 +2,9 @@
 const cloud = require('../../utils/cloud.js')
 const util = require('../../utils/util.js')
 
-const button = [{title: "我的影评", image: "/images/search.png"},
-              {title: "添加影评", image: "/images/add_review.png"}]
+const button = [{title: "影评列表", image: "/images/search.png"},
+              {title: "添加影评", image: "/images/add_review.png"},
+              {title: "我的影评", image: "/images/add_review.png"}  ]
 
 Page({
 
@@ -19,7 +20,7 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    console.log(this.data.user)
+    console.log(options)
     const id = options.id
     cloud.db().fetchMovieForId(id).then(({result}) => {
       this.setData({
@@ -36,17 +37,21 @@ Page({
       user: util.user().getCurrentUser() || null
     })
   },
-
+  /**
+   * 根据用户OpenId和电影Id获取影评信息
+   * 若获取数据，则显示“我的影评”，若没有，则显示“添加影评”
+   */ 
   fetchReviewOfOpenid: function(id){
     console.log(id)
     cloud.db().fetchReviewOfOpenId(id).then(({result}) => {
-      console.log(result.data.length)
+      console.log(result)
       this.setData({
+        review: result.data.length == 0 ? null : result.data[0],
         reviewed: result.data.length == 0 ? false : true
       })
     })
   },
-
+  //影评列表
   firstHandle:function(event){
     const user = util.user().getCurrentUser() || null
 
@@ -62,6 +67,7 @@ Page({
     })
 
   },
+  //添加影评
   secondHandle: function(event){
     if (!this.data.user) {
       wx.showToast({
@@ -87,6 +93,24 @@ Page({
         })
       }
     })
+  },
+  //我的影评
+  thirdHandle: function(event){
+    if (!this.data.user) {
+      wx.showToast({
+        title: '请先登录',
+      })
+      return
+    }
+
+    console.log(this.data.review)
+    if(!this.data.review) return
+
+    wx.navigateTo({
+      url: '/pages/recommend/recommend?id=' + this.data.review.id,
+    })
+
+
   }
   
 })

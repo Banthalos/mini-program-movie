@@ -21,12 +21,13 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
-    const { id, input, soudUrl, recordingTime }  = options
+    const { id, input, soudUrl, recordingTime , isShow}  = options
     this.setData({
       id,
       input,
       soudUrl,
-      recordingTime
+      recordingTime,
+      isShow
     })
 
     this.fetchMovieOfId()
@@ -40,19 +41,20 @@ Page({
   //发布影评
   releaseHandle:function(event){
     const movie = this.data.movie
-    cloud.db().releaseReview(movie._id, movie.image, movie.name, this.data.user, this.data.input, this.data.soudUrl, this.data.recordingTime ).then(({result}) => {
+    const add = "add"
+    cloud.db().releaseReview(movie._id, movie.image, movie.name, this.data.user, this.data.input, this.data.soudUrl, this.data.recordingTime).then(({result}) => {
 
       const reviewRes = {
-        movie_id: movie._id,
-        movie_image: movie.image,
-        movie_name: movie.name,
+        id: movie._id,
+        image: movie.image,
+        name: movie.name,
         review: this.data.input,
         soudUrl: this.data.soudUrl,
         user: this.data.user,
         recordingTime: this.data.recordingTime
       }
 
-      cloud.db().collection(reviewRes).then(({ result }) => {
+      cloud.db().collection(reviewRes, add).then(({ result }) => {
 
         wx.navigateTo({
           url: '/pages/check-review/check-review?id=' + movie._id,
