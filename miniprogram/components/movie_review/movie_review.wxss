@@ -72,20 +72,24 @@
   margin-bottom: 20rpx;
 }
 
-
-
  .movie_button{
   display: flex;
   justify-content: space-between;
-  bottom: 0;
-  position: absolute;
-  margin-bottom: 50rpx;
-  background: white
+  align-items: center;
+  margin-top: 200rpx;
+  background: white;
 }
 
-.movie_button re-button{
+.review_button{
   margin-left: 30rpx;
-  flex: 1
+} 
+
+
+.only_one{
+  display: flex;
+  justify-content: center;
 }
+
+
 
 

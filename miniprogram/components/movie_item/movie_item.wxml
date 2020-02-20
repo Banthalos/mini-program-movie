@@ -1,5 +1,5 @@
 <!--components/movie_item/movie_item.wxml-->
-  <view class="movie_item" id="{{id}}" bindtap="onItemClick">
+  <view class="movie_item" data-id="{{id}}" data-openId="{{openId}}" bindtap="onItemClick">
     <image class="movie_image" src="{{movie.image == '' ? '/images/default.png' : movie.image}}"></image>
     <view class="movie_content">
       <view class="movie_title">{{movie.name}}</view>
@@ -11,7 +11,6 @@
       <!-- 收藏影评-->
       <block wx:else>
         <view class="review">
-
           <view class="review_desc">
             <view wx:if="{{movie.review}}">{{movie.review}}</view>
             <audio-button wx:if="{{movie.soudUrl}}" soundUrl="{{movie.soudUrl}}" recordingTime="{{recordingTime}}" bindAudioPlay="audioPlay"></audio-button>

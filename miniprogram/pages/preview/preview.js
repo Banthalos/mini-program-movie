@@ -41,7 +41,6 @@ Page({
   //发布影评
   releaseHandle:function(event){
     const movie = this.data.movie
-    const add = "add"
     cloud.db().releaseReview(movie._id, movie.image, movie.name, this.data.user, this.data.input, this.data.soudUrl, this.data.recordingTime).then(({result}) => {
 
       const reviewRes = {
@@ -54,7 +53,7 @@ Page({
         recordingTime: this.data.recordingTime
       }
 
-      cloud.db().collection(reviewRes, add).then(({ result }) => {
+      cloud.db().collection(reviewRes, '').then(({ result }) => {
 
         wx.navigateTo({
           url: '/pages/check-review/check-review?id=' + movie._id,

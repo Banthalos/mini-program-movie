@@ -20,6 +20,10 @@ Component({
     id:{
       type:String,
       value:''
+    },
+    openId:{
+      type:String,
+      value:''
     }
 
   },
@@ -49,7 +53,7 @@ Component({
 
     onItemClick: function (event) {
       console.log(event)
-      const id = event.currentTarget.id
+      const id = event.currentTarget.dataset.openid
       this.triggerEvent("OnItemClick", id)
     }
   },

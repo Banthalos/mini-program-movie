@@ -60,9 +60,10 @@ Page({
         let collection = []
         /**
          * 区分发布影评与收藏影评
+         * 若userOpenId = OpenId, 则说明是用户发布的影评，反之是收藏的影评
          */
         data.map(it => {
-          if(it.addOrCollection == 'add'){
+          if(it.userOpenId == it.openId){
             release.push(it)
           }else{
             collection.push(it)
@@ -129,8 +130,9 @@ Page({
   onItemClick: function(event){
     console.log(event)
     const id = event.currentTarget.id
+    const openId = event.detail
     wx.navigateTo({
-      url: `/pages/recommend/recommend?id=${id}`,
+      url: `/pages/recommend/recommend?id=${id}&openId=${openId}`,
     })
   }
   

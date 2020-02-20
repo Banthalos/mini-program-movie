@@ -70,7 +70,7 @@ Page({
     console.log(event)
     const id = event.currentTarget.id
     wx.navigateTo({
-      url: `/pages/recommend/recommend?id=${id}&isShow={{true}}`,
+      url: `/pages/recommend/recommend?id=${id}&openId=${this.data.recommend.openId}`,
     })
   },
   //热门 点击事件

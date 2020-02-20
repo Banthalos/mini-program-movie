@@ -59,8 +59,9 @@ Page({
   toRecommend: function(event){
     console.log(event)
     const id = event.currentTarget.id
+    const openId = event.currentTarget.dataset.openid
     wx.navigateTo({
-      url: `/pages/recommend/recommend?id=${id}`, 
+      url: `/pages/recommend/recommend?id=${id}&openId=${openId}`, 
     })
   }
   

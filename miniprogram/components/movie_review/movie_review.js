@@ -38,8 +38,12 @@ Component({
       type: String,
       value: null
     },
-    isShow:{
-      type:Boolean,
+    reviewed:{
+      type: Boolean,
+      value: false
+    },
+    isTheUser:{
+      type: Boolean,
       value:false
     }
   },
@@ -61,6 +65,10 @@ Component({
     secondHandle: function (event) {
       const id = event.detail
       this.triggerEvent("SecondHandle", id)
+    },
+    thirdHandle: function (event) {
+      const id = event.detail
+      this.triggerEvent("ThirdHandle", id)
     },
     audioPlay: function(event){
       console.log(event)
